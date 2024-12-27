@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
@@ -21,7 +21,7 @@ function Header() {
     };
 
     document.addEventListener("click", handleClickOutside);
- 
+
     // Cleanup the event listener when the component is unmounted
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -49,50 +49,51 @@ function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 mr-16 relative">
-            {["HOME", "ABOUT", "PRODUCTS", "INFRASTRUCTURE", "CONTACT"].map((item) =>
-              item === "PRODUCTS" ? (
-                <div
-                  key={item}
-                  className="relative"
-                  ref={menuRef} // Assign ref to Products menu item
-                >
-                  <button
-                    className="hover:text-red-500 transition-colors duration-300 px-4"
-                    onClick={toggleSubMenu} // Open submenu on click
+            {["HOME", "ABOUT", "PRODUCTS", "INFRASTRUCTURE", "CONTACT"].map(
+              (item) =>
+                item === "PRODUCTS" ? (
+                  <div
+                    key={item}
+                    className="relative"
+                    ref={menuRef} // Assign ref to Products menu item
+                  >
+                    <button
+                      className="hover:text-red-500 transition-colors duration-300 px-4"
+                      onClick={toggleSubMenu} // Open submenu on click
+                    >
+                      {item}
+                    </button>
+                    {/* Dropdown Menu */}
+                    {isSubMenuOpen && (
+                      <div
+                        ref={submenuRef} // Assign ref to submenu
+                        className="absolute left-0 mt-2 flex flex-col bg-white text-black rounded shadow-lg"
+                      >
+                        <Link
+                          href="/marble"
+                          className="px-4 py-2 hover:bg-gray-100 transition"
+                        >
+                          MARBLE
+                        </Link>
+                        <Link
+                          href="/granite"
+                          className="px-4 py-2 hover:bg-gray-100 transition"
+                        >
+                          GRANITE
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={item}
+                    href={item === "HOME" ? "/" : `/${item.toLowerCase()}`}
+                    className="hover:text-red-500 transition-colors duration-300"
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     {item}
-                  </button>
-                  {/* Dropdown Menu */}
-                  {isSubMenuOpen && (
-                    <div
-                      ref={submenuRef} // Assign ref to submenu
-                      className="absolute left-0 mt-2 flex flex-col bg-white text-black rounded shadow-lg"
-                    >
-                      <Link
-                        href="/marble"
-                        className="px-4 py-2 hover:bg-gray-100 transition"
-                      >
-                        MARBLE
-                      </Link>
-                      <Link
-                        href="/granite"
-                        className="px-4 py-2 hover:bg-gray-100 transition"
-                      >
-                        GRANITE
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={item}
-                  href={item === "HOME" ? "/" : `/${item.toLowerCase()}`}
-                  className="hover:text-red-500 transition-colors duration-300"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item}
-                </Link>
-              )
+                  </Link>
+                )
             )}
             <Link
               href="/login"
@@ -125,16 +126,33 @@ function Header() {
           >
             <IoMdClose className="h-6 w-6 text-white" />
           </button>
-          {["HOME", "ABOUT", "PRODUCTS", "INFRASTRUCTURE", "CONTACT"].map((item) => (
-            <Link
-              key={item}
-              href={item === "HOME" ? "/" : `/${item.toLowerCase()}`}
-              className="hover:text-red-500 transition-colors duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item}
-            </Link>
-          ))}
+          {["HOME", "ABOUT", "PRODUCTS", "INFRASTRUCTURE", "CONTACT"].map(
+            (item) => (
+              <>
+                <Link key={item}
+                  href={item === "HOME" ? "/" : item === "PRODUCTS" ? "" : `/${item.toLowerCase()}`}
+                  className="hover:text-red-500 transition-colors duration-300"
+                  onClick={item === "PRODUCTS" ? "" :  () => setIsMenuOpen(false)}
+                >
+                  {item}
+                </Link>
+                {item === "PRODUCTS" ? (
+                  <>
+                    <span style={{ marginTop: "0px", marginLeft: "10px" }}>
+                      {" "}
+                      <Link onClick={() => setIsMenuOpen(false)} href="/granite">-Granite</Link>{" "}
+                    </span>
+                    <span style={{ marginTop: "0px", marginLeft: "10px" }}>
+                      {" "}
+                      <Link onClick={() => setIsMenuOpen(false)} href="/marble">-Marble</Link>{" "}
+                    </span>
+                  </>
+                ) : (
+                  false
+                )}
+              </>
+            )
+          )}
           <Link
             href="/login"
             className="hover:text-red-500 transition-colors duration-300"
