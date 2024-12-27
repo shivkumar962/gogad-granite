@@ -73,9 +73,9 @@ function Granite() {
         granite  <span className="font-bold">COLLECTION</span>
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  lg:px-32">
           {marbleItems.map((marble) => (
-            <div key={marble.id} className="cbp-item w-[300px]">
+            <div key={marble.id} className="cbp-item w-full">
               <div className="cbp-item-wrapper">
                 <div className="cbp-caption">
                   <div className="cbp-caption-defaultWrap">

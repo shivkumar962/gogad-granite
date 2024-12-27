@@ -17,14 +17,14 @@ function MarbleCollection() {
 
   return (
     <>
-      <div className="container mx-auto px-4 pt-24 pb-16 min-h-screen"> {/* Added min-h-screen */}
+      <div className="container lg:px-32 pt-24 pb-16 min-h-screen"> {/* Added min-h-screen */}
         <h1 className="text-center mb-12 text-4xl md:text-5xl lg:text-6xl font-light">
           Marble <span className="font-bold">COLLECTION</span>
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-4">
           {marbleItems.map((marble) => (
-            <div key={marble.id} className="cbp-item w-[300px]">
+            <div key={marble.id} className="cbp-item w-full">
               <div className="cbp-item-wrapper">
                 <div className="cbp-caption">
                   <div className="cbp-caption-defaultWrap">
