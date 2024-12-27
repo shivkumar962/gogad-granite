@@ -80,12 +80,6 @@ function Header() {
                       >
                         GRANITE
                       </Link>
-                      <Link
-                        href="/products/category3"
-                        className="px-4 py-2 hover:bg-gray-100 transition"
-                      >
-                        IMPORTED
-                      </Link>
                     </div>
                   )}
                 </div>
